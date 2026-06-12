@@ -1,0 +1,13 @@
+services:
+  vision-proxy:
+    build: .
+    container_name: vision-proxy
+    restart: unless-stopped
+    ports:
+      - "${PROXY_PORT:-9901}:9901"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - DEEPSEEK_BASE_URL=${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.0-flash}
+      - PROXY_PORT=9901
